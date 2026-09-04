@@ -1,0 +1,77 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+	<div class="wrap footer__inner">
+		<div class="footer__brand">
+			<img
+				class="footer__logo"
+				src="/images/logo.jpg"
+				alt="One Level Construction"
+				width="160"
+				height="160"
+			/>
+			<p>Κατασκευές &amp; ανακαινίσεις με ακρίβεια επιπέδου.</p>
+		</div>
+		<nav class="footer__nav" aria-label="Υποσέλιδο">
+			<a href="#υπηρεσίες">Υπηρεσίες</a>
+			<a href="#έργα">Έργα</a>
+			<a href="#επικοινωνία">Επικοινωνία</a>
+		</nav>
+		<p class="footer__copy">© {year} One Level. Όλα τα δικαιώματα διατηρούνται.</p>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		background: var(--graphite);
+		color: rgba(247, 248, 246, 0.78);
+		padding-block: 2.5rem 2rem;
+	}
+
+	.footer__inner {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.footer__brand {
+		display: grid;
+		gap: 0.85rem;
+		justify-items: start;
+	}
+
+	.footer__logo {
+		width: 4.5rem;
+		height: 4.5rem;
+		object-fit: cover;
+		background: #fff;
+	}
+
+	.footer__nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.25rem;
+	}
+
+	.footer__nav a:hover {
+		color: var(--paper);
+	}
+
+	.footer__copy {
+		font-size: 0.88rem;
+		border-top: 1px solid rgba(247, 248, 246, 0.12);
+		padding-top: 1.25rem;
+	}
+
+	@media (min-width: 800px) {
+		.footer__inner {
+			grid-template-columns: 1.4fr 1fr;
+			align-items: end;
+		}
+
+		.footer__copy {
+			grid-column: 1 / -1;
+		}
+	}
+</style>

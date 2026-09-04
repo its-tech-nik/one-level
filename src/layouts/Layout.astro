@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'One Level — Κατασκευές & Ανακαινίσεις',
+	description = 'Ξηρά δόμηση, ελαιοχρωματισμοί, ανακαινίσεις επαγγελματικών χώρων και ξενοδοχείων, δημόσια έργα. Ακρίβεια σε κάθε επίπεδο.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="el">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
+		<link rel="apple-touch-icon" href="/images/logo.jpg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="/images/logo.jpg" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="el_GR" />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Geologica:wght@300..700&family=Manrope:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

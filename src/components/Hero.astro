@@ -1,0 +1,159 @@
+---
+---
+
+<section class="hero" id="κορυφή">
+	<div class="hero__media" aria-hidden="true">
+		<img
+			src="/images/hero.jpg"
+			alt=""
+			width="1920"
+			height="1080"
+			fetchpriority="high"
+		/>
+		<div class="hero__veil"></div>
+	</div>
+
+	<div class="wrap hero__content">
+		<img
+			class="hero__logo"
+			src="/images/logo.jpg"
+			alt="One Level Construction"
+			width="512"
+			height="512"
+		/>
+		<h1 class="hero__title">Χώροι με ακρίβεια. Έργα στο σωστό επίπεδο.</h1>
+		<p class="hero__lead">
+			Ξηρά δόμηση, ελαιοχρωματισμοί και ανακαινίσεις για επαγγελματικούς χώρους, ξενοδοχεία και δημόσια έργα.
+		</p>
+		<div class="hero__actions">
+			<a class="btn" href="#επικοινωνία">Ζητήστε προσφορά</a>
+			<a class="btn btn--ghost" href="#έργα">Δείτε έργα</a>
+		</div>
+	</div>
+
+	<div class="hero__level" aria-hidden="true">
+		<span class="level-line"></span>
+	</div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		min-height: 100svh;
+		display: grid;
+		align-items: end;
+		color: var(--paper);
+		overflow: clip;
+	}
+
+	.hero__media {
+		position: absolute;
+		inset: 0;
+	}
+
+	.hero__media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transform: scale(1.04);
+		animation: hero-settle 1.8s var(--ease) both;
+	}
+
+	.hero__veil {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(180deg, rgba(15, 42, 53, 0.55) 0%, rgba(18, 21, 19, 0.28) 38%, rgba(18, 21, 19, 0.78) 100%),
+			radial-gradient(120% 80% at 80% 10%, rgba(168, 137, 79, 0.18), transparent 50%);
+	}
+
+	.hero__content {
+		position: relative;
+		z-index: 1;
+		padding-block: 8rem 5.5rem;
+		max-width: 44rem;
+		animation: hero-rise 1s var(--ease) 0.15s both;
+	}
+
+	.hero__logo {
+		width: clamp(7.5rem, 18vw, 11rem);
+		height: clamp(7.5rem, 18vw, 11rem);
+		object-fit: cover;
+		margin-bottom: 1.35rem;
+		background: #fff;
+		box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+	}
+
+	.hero__title {
+		font-size: clamp(1.45rem, 3.2vw, 2.15rem);
+		font-weight: 450;
+		max-width: 18ch;
+		margin-bottom: 1rem;
+		color: rgba(247, 248, 246, 0.94);
+	}
+
+	.hero__lead {
+		max-width: 36ch;
+		color: rgba(247, 248, 246, 0.78);
+		margin-bottom: 1.75rem;
+	}
+
+	.hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.hero__level {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 2.25rem;
+		padding-inline: max(1.25rem, calc((100% - var(--max)) / 2 + 1.25rem));
+		animation: line-draw 1.2s var(--ease) 0.55s both;
+	}
+
+	.hero__level :global(.level-line::after) {
+		box-shadow: 0 0 0 3px transparent;
+		background: var(--brass);
+	}
+
+	@keyframes hero-settle {
+		from {
+			transform: scale(1.08);
+			filter: saturate(0.8);
+		}
+		to {
+			transform: scale(1.04);
+			filter: saturate(1);
+		}
+	}
+
+	@keyframes hero-rise {
+		from {
+			opacity: 0;
+			transform: translateY(1.25rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes line-draw {
+		from {
+			opacity: 0;
+			clip-path: inset(0 50% 0 50%);
+		}
+		to {
+			opacity: 1;
+			clip-path: inset(0 0 0 0);
+		}
+	}
+
+	@media (min-width: 900px) {
+		.hero__content {
+			padding-block: 10rem 6.5rem;
+		}
+	}
+</style>

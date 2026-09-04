@@ -1,0 +1,187 @@
+---
+const links = [
+	{ href: '#υπηρεσίες', label: 'Υπηρεσίες' },
+	{ href: '#έργα', label: 'Έργα' },
+	{ href: '#εταιρεία', label: 'Εταιρεία' },
+	{ href: '#επικοινωνία', label: 'Επικοινωνία' },
+];
+---
+
+<header class="site-header">
+	<div class="wrap site-header__inner">
+		<a class="brand" href="#κορυφή" aria-label="One Level — αρχική">
+			<img
+				class="brand__logo"
+				src="/images/logo.jpg"
+				alt="One Level Construction"
+				width="160"
+				height="160"
+			/>
+		</a>
+
+		<nav class="nav" aria-label="Κύρια πλοήγηση">
+			<ul class="nav__list">
+				{
+					links.map((link) => (
+						<li>
+							<a href={link.href}>{link.label}</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<a class="btn btn--dark site-header__cta" href="#επικοινωνία">Ζητήστε προσφορά</a>
+
+		<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
+			<span class="sr-only">Μενού</span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</button>
+	</div>
+
+	<nav id="mobile-nav" class="mobile-nav" hidden>
+		<ul>
+			{
+				links.map((link) => (
+					<li>
+						<a href={link.href}>{link.label}</a>
+					</li>
+				))
+			}
+			<li>
+				<a class="btn" href="#επικοινωνία">Ζητήστε προσφορά</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<script>
+	const toggle = document.querySelector('.menu-toggle');
+	const panel = document.querySelector('#mobile-nav');
+	if (toggle instanceof HTMLButtonElement && panel instanceof HTMLElement) {
+		toggle.addEventListener('click', () => {
+			const open = toggle.getAttribute('aria-expanded') === 'true';
+			toggle.setAttribute('aria-expanded', String(!open));
+			panel.hidden = open;
+		});
+		panel.querySelectorAll('a').forEach((link) => {
+			link.addEventListener('click', () => {
+				toggle.setAttribute('aria-expanded', 'false');
+				panel.hidden = true;
+			});
+		});
+	}
+</script>
+
+<style>
+	.site-header {
+		position: absolute;
+		inset: 0 0 auto;
+		z-index: 20;
+		padding-block: 1.25rem;
+		color: var(--paper);
+	}
+
+	.site-header__inner {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		z-index: 1;
+		flex-shrink: 0;
+	}
+
+	.brand__logo {
+		width: 3.25rem;
+		height: 3.25rem;
+		object-fit: cover;
+		background: #fff;
+		box-shadow: 0 0 0 1px rgba(247, 248, 246, 0.2);
+	}
+
+	.nav {
+		margin-left: auto;
+	}
+
+	.nav__list {
+		display: none;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 1.75rem;
+	}
+
+	.nav__list a {
+		font-size: 0.92rem;
+		font-weight: 500;
+		opacity: 0.86;
+		transition: opacity 160ms var(--ease);
+	}
+
+	.nav__list a:hover {
+		opacity: 1;
+	}
+
+	.site-header__cta {
+		display: none;
+	}
+
+	.menu-toggle {
+		margin-left: auto;
+		width: 2.75rem;
+		height: 2.75rem;
+		border: 1px solid rgba(247, 248, 246, 0.35);
+		background: transparent;
+		display: grid;
+		place-content: center;
+		gap: 0.4rem;
+		cursor: pointer;
+		color: var(--paper);
+	}
+
+	.menu-toggle span:not(.sr-only) {
+		display: block;
+		width: 1.15rem;
+		height: 1.5px;
+		background: currentColor;
+	}
+
+	.mobile-nav {
+		margin-top: 0.75rem;
+		padding: 1.25rem 1.25rem 1.5rem;
+		background: rgba(15, 42, 53, 0.96);
+		backdrop-filter: blur(10px);
+	}
+
+	.mobile-nav ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 1rem;
+	}
+
+	.mobile-nav a {
+		font-weight: 600;
+	}
+
+	@media (min-width: 880px) {
+		.nav__list {
+			display: flex;
+		}
+
+		.site-header__cta {
+			display: inline-flex;
+		}
+
+		.menu-toggle,
+		.mobile-nav {
+			display: none !important;
+		}
+	}
+</style>

@@ -1,0 +1,170 @@
+---
+const services = [
+	{
+		id: 'ξηρά-δόμηση',
+		title: 'Εργασίες ξηράς δόμησης',
+		text: 'Τοποθέτηση συστημάτων γυψοσανίδας, χωρίσματα, ψευδοροφές και κατασκευές με καθαρή γεωμετρία και σταθερή επιφάνεια για τον τελικό φινίρισμα.',
+		image: '/images/drywall.jpg',
+		alt: 'Εργασίες ξηράς δόμησης με γυψοσανίδες σε επαγγελματικό χώρο',
+	},
+	{
+		id: 'ελαιοχρωματισμοί',
+		title: 'Ελαιοχρωματισμοί',
+		text: 'Προετοιμασία επιφανειών, στοκαρίσματα και βαφές υψηλής αντοχής για εσωτερικούς και εξωτερικούς χώρους — ομοιόμορφο αποτέλεσμα χωρίς συμβιβασμούς.',
+		image: '/images/painting.jpg',
+		alt: 'Ελαιοχρωματισμός εσωτερικών επιφανειών',
+	},
+	{
+		id: 'επαγγελματικοί',
+		title: 'Ανακαινίσεις επαγγελματικών χώρων',
+		text: 'Αναδιαμόρφωση γραφείων, καταστημάτων και εταιρικών χώρων με σεβασμό στη λειτουργία της επιχείρησης και στα χρονοδιαγράμματα παράδοσης.',
+		image: '/images/commercial.jpg',
+		alt: 'Ανακαινισμένος επαγγελματικός χώρος',
+	},
+	{
+		id: 'ξενοδοχεία',
+		title: 'Ανακαινίσεις ξενοδοχείων',
+		text: 'Αναβάθμιση δωματίων, κοινόχρηστων χώρων και υποδομών φιλοξενίας με υλικά και φινιρίσματα που αντέχουν στην έντονη χρήση.',
+		image: '/images/hotel.jpg',
+		alt: 'Ανακαινισμένος ξενοδοχειακός χώρος',
+	},
+	{
+		id: 'δημόσια',
+		title: 'Δημόσια έργα',
+		text: 'Εκτέλεση και υποστήριξη δημόσιων έργων με έμφαση στην τεκμηρίωση, τη συμμόρφωση προδιαγραφών και την ασφαλή πρόοδο εργασιών.',
+		image: '/images/public.jpg',
+		alt: 'Εργοτάξιο δημόσιου έργου',
+	},
+];
+---
+
+<section class="services" id="υπηρεσίες">
+	<div class="wrap">
+		<div class="services__intro">
+			<h2>Υπηρεσίες με καθαρή εκτέλεση</h2>
+			<p>
+				Από τη δομή μέχρι την τελική επιφάνεια — συντονίζουμε τα κρίσιμα στάδια ώστε το έργο να παραδοθεί ενιαίο,
+				λειτουργικό και έτοιμο για χρήση.
+			</p>
+		</div>
+	</div>
+
+	<div class="services__list">
+		{
+			services.map((service, index) => (
+				<article class:list={['service', index % 2 === 1 && 'service--flip']} id={service.id}>
+					<figure class="service__figure">
+						<img src={service.image} alt={service.alt} width="1200" height="900" loading="lazy" />
+					</figure>
+					<div class="service__copy">
+						<span class="service__index" aria-hidden="true">
+							{String(index + 1).padStart(2, '0')}
+						</span>
+						<h3>{service.title}</h3>
+						<p>{service.text}</p>
+					</div>
+				</article>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.services {
+		padding-block: var(--space-xl) var(--space-lg);
+		background: var(--chalk);
+	}
+
+	.services__intro {
+		display: grid;
+		gap: 1rem;
+		max-width: 38rem;
+		margin-bottom: var(--space-lg);
+	}
+
+	.services__intro h2 {
+		font-size: clamp(1.9rem, 4vw, 2.8rem);
+	}
+
+	.services__intro p {
+		color: var(--steel);
+	}
+
+	.services__list {
+		display: grid;
+		gap: 0;
+	}
+
+	.service {
+		display: grid;
+		background: var(--paper);
+		border-top: 1px solid var(--line);
+	}
+
+	.service__figure {
+		margin: 0;
+		min-height: 16rem;
+		overflow: clip;
+	}
+
+	.service__figure img {
+		width: 100%;
+		height: 100%;
+		min-height: 16rem;
+		object-fit: cover;
+		transition: transform 700ms var(--ease);
+	}
+
+	.service:hover .service__figure img {
+		transform: scale(1.03);
+	}
+
+	.service__copy {
+		padding: 1.75rem 1.5rem 2rem;
+		display: grid;
+		align-content: center;
+		gap: 0.85rem;
+	}
+
+	.service__index {
+		font-family: var(--font-display);
+		font-size: 0.95rem;
+		color: var(--brass);
+		letter-spacing: 0.04em;
+	}
+
+	.service__copy h3 {
+		font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+		max-width: 16ch;
+	}
+
+	.service__copy p {
+		color: var(--steel);
+		max-width: 38ch;
+	}
+
+	@media (min-width: 900px) {
+		.service {
+			grid-template-columns: 1.15fr 1fr;
+			min-height: 26rem;
+		}
+
+		.service--flip {
+			grid-template-columns: 1fr 1.15fr;
+		}
+
+		.service--flip .service__figure {
+			order: 2;
+		}
+
+		.service__copy {
+			padding: 3rem 3.5rem;
+		}
+
+		.service__figure img,
+		.service__figure {
+			min-height: 100%;
+			height: 100%;
+		}
+	}
+</style>
