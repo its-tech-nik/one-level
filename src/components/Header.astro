@@ -57,8 +57,18 @@ const links = [
 </header>
 
 <script>
+	const header = document.querySelector('.site-header');
 	const toggle = document.querySelector('.menu-toggle');
 	const panel = document.querySelector('#mobile-nav');
+
+	const updateHeader = () => {
+		if (!(header instanceof HTMLElement)) return;
+		header.classList.toggle('is-scrolled', window.scrollY > 24);
+	};
+
+	updateHeader();
+	window.addEventListener('scroll', updateHeader, { passive: true });
+
 	if (toggle instanceof HTMLButtonElement && panel instanceof HTMLElement) {
 		toggle.addEventListener('click', () => {
 			const open = toggle.getAttribute('aria-expanded') === 'true';
@@ -76,11 +86,23 @@ const links = [
 
 <style>
 	.site-header {
-		position: absolute;
+		position: fixed;
 		inset: 0 0 auto;
 		z-index: 20;
 		padding-block: 1.25rem;
 		color: var(--paper);
+		transition:
+			background-color 220ms var(--ease),
+			backdrop-filter 220ms var(--ease),
+			box-shadow 220ms var(--ease),
+			padding-block 220ms var(--ease);
+	}
+
+	.site-header.is-scrolled {
+		padding-block: 0.85rem;
+		background: rgba(15, 42, 53, 0.92);
+		backdrop-filter: blur(12px);
+		box-shadow: 0 1px 0 rgba(247, 248, 246, 0.08);
 	}
 
 	.site-header__inner {
