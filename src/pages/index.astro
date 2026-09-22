@@ -1,22 +1,140 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Services from '../components/Services.astro';
-import Portfolio from '../components/Portfolio.astro';
-import About from '../components/About.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
 ---
 
-<Layout>
-	<Header />
-	<main>
-		<Hero />
-		<Services />
-		<Portfolio />
-		<About />
-		<Contact />
+<Layout
+	title="One Level — Υπό κατασκευή"
+	description="Η ιστοσελίδα της One Level είναι υπό κατασκευή. Επιστρέψτε σύντομα."
+>
+	<main class="uc">
+		<div class="uc__inner">
+			<img
+				class="uc__logo"
+				src="/images/logo.jpg"
+				alt="One Level Construction"
+				width="160"
+				height="160"
+			/>
+			<p class="uc__brand">One Level</p>
+			<h1 class="uc__title">Υπό κατασκευή</h1>
+			<p class="uc__lead">
+				Η νέα μας ιστοσελίδα ετοιμάζεται. Επιστρέψτε σύντομα.
+			</p>
+		</div>
 	</main>
-	<Footer />
 </Layout>
+
+<style>
+	.uc {
+		min-height: 100svh;
+		display: grid;
+		place-items: center;
+		padding: var(--space-lg) var(--space-md);
+		background:
+			linear-gradient(165deg, var(--aegean-deep) 0%, var(--aegean) 48%, #163545 100%);
+		color: var(--paper);
+		position: relative;
+		overflow: clip;
+	}
+
+	.uc::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(ellipse 55% 40% at 70% 20%, rgba(168, 137, 79, 0.18), transparent 65%),
+			radial-gradient(ellipse 50% 45% at 15% 85%, rgba(255, 255, 255, 0.06), transparent 60%);
+		pointer-events: none;
+	}
+
+	.uc__inner {
+		position: relative;
+		text-align: center;
+		max-width: 28rem;
+		display: grid;
+		justify-items: center;
+		gap: var(--space-sm);
+		animation: uc-rise 0.9s var(--ease) both;
+	}
+
+	.uc__logo {
+		width: 5.5rem;
+		height: 5.5rem;
+		object-fit: cover;
+		margin-bottom: var(--space-xs);
+		animation: uc-fade 1.1s var(--ease) 0.15s both;
+	}
+
+	.uc__brand {
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 4vw, 2.35rem);
+		font-weight: 600;
+		letter-spacing: -0.03em;
+		line-height: 1;
+		color: var(--brass-hot);
+	}
+
+	.uc__title {
+		font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+		font-weight: 400;
+		letter-spacing: 0.02em;
+		color: rgba(247, 248, 246, 0.92);
+	}
+
+	.uc__lead {
+		margin-top: var(--space-xs);
+		max-width: 22rem;
+		color: rgba(247, 248, 246, 0.72);
+		font-size: 1rem;
+		line-height: 1.55;
+	}
+
+	.uc__inner::after {
+		content: '';
+		display: block;
+		width: 4rem;
+		height: 2px;
+		margin-top: var(--space-md);
+		background: linear-gradient(90deg, transparent, var(--brass), transparent);
+		animation: uc-line 1.2s var(--ease) 0.35s both;
+	}
+
+	@keyframes uc-rise {
+		from {
+			opacity: 0;
+			transform: translateY(1rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes uc-fade {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	@keyframes uc-line {
+		from {
+			opacity: 0;
+			transform: scaleX(0.4);
+		}
+		to {
+			opacity: 1;
+			transform: scaleX(1);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.uc__inner,
+		.uc__logo,
+		.uc__inner::after {
+			animation: none;
+		}
+	}
+</style>
